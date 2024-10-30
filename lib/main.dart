@@ -3,9 +3,12 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pos_coffeashop/core/theme/app_pallete.dart';
-import 'package:pos_coffeashop/features/auth/presentation/pages/register_page.dart';
+import 'package:pos_coffeashop/features/home/home_page.dart';
 import 'package:pos_coffeashop/features/theme/cubit/switch_theme_cubit.dart';
+import 'package:pos_coffeashop/router/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -24,10 +27,14 @@ void main() async {
 final supabase = Supabase.instance.client;
 
 class MyApp extends StatelessWidget {
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router = createRouter();
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -36,7 +43,8 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SwitchThemeCubit, SwitchThemeState>(
         builder: (context, themeState) {
-          return MaterialApp(
+          return MaterialApp.router(
+            routerConfig: router,
             debugShowCheckedModeBanner: false,
             debugShowMaterialGrid: false,
             useInheritedMediaQuery: true,
@@ -44,7 +52,15 @@ class MyApp extends StatelessWidget {
             builder: DevicePreview.appBuilder,
             title: 'Flutter Demo',
             theme: themeState.isDarkMode ? darkTheme : lightTheme,
-            home: const RegisterPage(),
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en'),
+              Locale('id'),
+            ],
           );
         },
       ),

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _RegisterPageState extends State<RegisterPage> {
           children: [
             const Center(
               child: Text(
-                'Register Page',
+                'Login Page',
                 style: TextStyle(
                   fontSize: 30,
                 ),
@@ -46,21 +46,12 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 20,
             ),
-            const TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Confirm Password',
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),
               onPressed: () {},
-              child: const Text('Register'),
+              child: const Text('Login'),
             ),
           ],
         ),
