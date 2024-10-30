@@ -62,6 +62,20 @@ class _RegisterPageState extends State<RegisterPage> {
               onPressed: () {},
               child: const Text('Register'),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              width: double.infinity,
+              child: TextButton.icon(
+                style: TextButton.styleFrom(
+                  minimumSize: const Size.fromHeight(50),
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.g_mobiledata_outlined),
+                label: const Text('Login dengan google'),
+              ),
+            ),
           ],
         ),
       ),

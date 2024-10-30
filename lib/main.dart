@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pos_coffeashop/core/theme/app_pallete.dart';
-import 'package:pos_coffeashop/features/home/home_page.dart';
 import 'package:pos_coffeashop/features/theme/cubit/switch_theme_cubit.dart';
 import 'package:pos_coffeashop/router/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
