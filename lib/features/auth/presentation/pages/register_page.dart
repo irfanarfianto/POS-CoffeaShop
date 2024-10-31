@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -196,9 +197,9 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.google,
-                    size: 20,
+                  icon: Brand(
+                    Brands.google,
+                    size: 25,
                   ),
                   label: const Text('Daftar dengan google'),
                 ),

@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
             useInheritedMediaQuery: true,
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,
-            title: 'Flutter Demo',
+            title: 'POS Coffeashop',
             theme: themeState.isDarkMode ? darkTheme : lightTheme,
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

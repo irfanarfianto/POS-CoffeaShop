@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:pos_coffeashop/features/theme/cubit/switch_theme_cubit.dart';
+import 'package:pos_coffeashop/router/home/widget/list_menu.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,181 +14,164 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  PageController controller = PageController(initialPage: 0);
+  int selected = 0;
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: const ScrollBehavior().copyWith(overscroll: false),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('POS Coffeashop'),
-          centerTitle: true,
+    return Scaffold(
+      body: PageView(
+        controller: controller,
+        onPageChanged: (index) {
+          setState(() {
+            selected = index;
+          });
+        },
+        children: const [
+          HomeSection(),
+          InventarisSection(),
+          NotificationSection(),
+          ProfileSection(),
+        ],
+      ),
+      bottomNavigationBar: StylishBottomBar(
+        option: AnimatedBarOptions(
+          opacity: 0.3,
+          barAnimation: BarAnimation.fade,
+          padding: const EdgeInsets.only(top: 5.0),
         ),
-        body: ListView(
-          children: [
-            // Section Auth
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Auth'),
-              children: [
-                ListTile(
-                  title: const Text('Login'),
-                  onTap: () {
-                    context.push('/login');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Register'),
-                  onTap: () {
-                    context.push('/register');
-                  },
-                ),
-              ],
-            ),
-            // Section Dashboard
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Dashboard'),
-              children: [
-                ListTile(
-                  title: const Text('Pemesanan'),
-                  onTap: () {
-                    context.push('/pemesanan');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Pembayaran'),
-                  onTap: () {
-                    context.push('/pembayaran');
-                  },
-                ),
-              ],
-            ),
-            // Section Manajemen Produk & Inventaris
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Manajemen Produk & Inventaris'),
-              children: [
-                ListTile(
-                  title: const Text('Daftar Produk'),
-                  onTap: () {
-                    context.push('/daftar_produk');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Tambah/Edit Produk'),
-                  onTap: () {
-                    context.push('/tambah_edit_produk');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Stok Bahan Baku'),
-                  onTap: () {
-                    context.push('/stok_bahan_baku');
-                  },
-                ),
-              ],
-            ),
-            // Section Program Loyalitas Pelanggan
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Program Loyalitas Pelanggan'),
-              children: [
-                ListTile(
-                  title: const Text('Riwayat Pelanggan'),
-                  onTap: () {
-                    context.push('/riwayat_pelanggan');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Detail Program Loyalitas'),
-                  onTap: () {
-                    context.push('/detail_program_loyalitas');
-                  },
-                ),
-              ],
-            ),
-            // Section Laporan
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Laporan'),
-              children: [
-                ListTile(
-                  title: const Text('Laporan Penjualan'),
-                  onTap: () {
-                    context.push('/laporan_penjualan');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Laporan Stok'),
-                  onTap: () {
-                    context.push('/laporan_stok');
-                  },
-                ),
-              ],
-            ),
-            // Section Manajemen Pengguna
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Manajemen Pengguna'),
-              children: [
-                ListTile(
-                  title: const Text('Daftar Pengguna'),
-                  onTap: () {
-                    context.push('/daftar_pengguna');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Detail Pengguna'),
-                  onTap: () {
-                    context.push('/detail_pengguna');
-                  },
-                ),
-              ],
-            ),
-            // Section Pengaturan
-            ExpansionTile(
-              shape: const RoundedRectangleBorder(),
-              title: const Text('Pengaturan'),
-              children: [
-                ListTile(
-                  title: const Text('Profil Toko'),
-                  onTap: () {
-                    context.push('/profil_toko');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Integrasi Pembayaran'),
-                  onTap: () {
-                    context.push('/integrasi_pembayaran');
-                  },
-                ),
-                ListTile(
-                  title: const Text('Backup Data'),
-                  onTap: () {
-                    context.push('/backup_data');
-                  },
-                ),
-                ListTile(
-                  title: Text(
-                    'Ganti Tampilan',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  trailing: BlocBuilder<SwitchThemeCubit, SwitchThemeState>(
-                    builder: (context, state) {
-                      return Switch(
-                        value: state.isDarkMode,
-                        onChanged: (value) {
-                          context.read<SwitchThemeCubit>().toggleTheme();
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ],
+        iconSpace: 50.0,
+        notchStyle: NotchStyle.circle,
+        items: [
+          BottomBarItem(
+            icon: selected == 0
+                ? const Icon(EvaIcons.home)
+                : const Icon(EvaIcons.home_outline),
+            title: const Text('Beranda',
+                style: TextStyle(
+                  fontSize: 12.0,
+                )),
+          ),
+          BottomBarItem(
+            icon: selected == 1
+                ? const Icon(EvaIcons.archive)
+                : const Icon(EvaIcons.archive_outline),
+            title: const Text('Inventaris',
+                style: TextStyle(
+                  fontSize: 12.0,
+                )),
+          ),
+          BottomBarItem(
+            icon: selected == 2
+                ? const Icon(EvaIcons.bell)
+                : const Icon(EvaIcons.bell_outline),
+            title: const Text('Notifikasi',
+                style: TextStyle(
+                  fontSize: 12.0,
+                )),
+          ),
+          BottomBarItem(
+            icon: selected == 3
+                ? const Icon(EvaIcons.person)
+                : const Icon(EvaIcons.person_outline),
+            title: const Text('Profil',
+                style: TextStyle(
+                  fontSize: 12.0,
+                )),
+          ),
+        ],
+        hasNotch: true,
+        fabLocation: StylishBarFabLocation.center,
+        currentIndex: selected,
+        onTap: (index) {
+          setState(() {
+            selected = index;
+            controller.jumpToPage(index);
+          });
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          context.push('/cart');
+        },
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        child: const Icon(
+          Icons.shopping_bag,
+          color: Colors.white,
+          size: 30.0,
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
+  }
+}
+
+// Section Widgets
+class HomeSection extends StatelessWidget {
+  const HomeSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+      body: ListView(
+        children: const [
+          AuthSection(),
+          DashboardSection(),
+          ProductManagementSection(),
+          LoyaltyProgramSection(),
+          ReportSection(),
+          UserManagementSection(),
+          SettingsSection(),
+        ],
+      ),
+    );
+  }
+}
+
+class PemesananSection extends StatelessWidget {
+  const PemesananSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Pemesanan Page'));
+  }
+}
+
+class InventarisSection extends StatelessWidget {
+  const InventarisSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Inventaris Page'));
+  }
+}
+
+class NotificationSection extends StatelessWidget {
+  const NotificationSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Notifikasi Page'));
+  }
+}
+
+class ProfileSection extends StatelessWidget {
+  const ProfileSection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Profil Page'));
   }
 }
