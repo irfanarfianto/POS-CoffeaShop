@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:pos_coffeashop/core/error/error_page.dart';
 import 'package:pos_coffeashop/features/auth/presentation/pages/login_page.dart';
 import 'package:pos_coffeashop/features/auth/presentation/pages/register_page.dart';
-import 'package:pos_coffeashop/features/home/home_page.dart';
+import 'package:pos_coffeashop/router/home/home_page.dart';
 
 GoRouter createRouter() {
   return GoRouter(
@@ -28,6 +28,14 @@ GoRouter createRouter() {
         path: '/register',
         pageBuilder: (context, state) =>
             const MaterialPage(child: RegisterPage()),
+      ),
+      GoRoute(
+        name: 'error',
+        path: '/error',
+        pageBuilder: (context, state) {
+          final errorMessage = state.extra as String?;
+          return MaterialPage(child: ErrorPage(errorMessage: errorMessage));
+        },
       ),
     ],
   );

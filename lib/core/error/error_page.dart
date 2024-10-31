@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ErrorPage extends StatelessWidget {
-  const ErrorPage({super.key});
+  final String? errorMessage;
+
+  const ErrorPage({super.key, this.errorMessage});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            Text('404'),
-            Text('Error Page'),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                errorMessage ?? 'Terjadi kesalahan yang tidak terduga.',
+                style: const TextStyle(fontSize: 18),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  context.pop();
+                },
+                label: const Text('Kembali'),
+                icon: const Icon(Icons.back_hand),
+              ),
+            ],
+          ),
         ),
       ),
     );

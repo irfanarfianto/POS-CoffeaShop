@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Warna tema gelap
-const Color darkPrimary = Color(0xFF00A86B);
+const Color darkPrimary = Color(0xFF006BFF);
 const Color darkSecondary = Color(0xFF003566);
 const Color darkTertiary = Color(0xFF00A86B);
 const Color darkNeutralBlack = Color(0xFF000814);
@@ -20,7 +20,7 @@ final ThemeData darkTheme = ThemeData(
     surface: darkSurface,
     error: Colors.red,
     onPrimary: darkNeutralBlack,
-    onSecondary: Colors.white,
+    onSecondary: darkNeutralGrey,
     onSurface: Colors.white,
     onError: Colors.white,
     brightness: Brightness.dark,
@@ -52,19 +52,29 @@ final ThemeData darkTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      textStyle: GoogleFonts.poppins(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15,
+      ),
       foregroundColor: Colors.white,
       backgroundColor: darkPrimary,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(50),
       ),
-      minimumSize: const Size(88, 36),
+      minimumSize: const Size.fromHeight(50),
       padding: const EdgeInsets.symmetric(horizontal: 16),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
+      textStyle: GoogleFonts.poppins(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15,
+      ),
       foregroundColor: darkPrimary,
-      minimumSize: const Size(88, 36),
+      minimumSize: const Size.fromHeight(50),
       padding: const EdgeInsets.symmetric(horizontal: 16),
     ),
   ),
@@ -79,9 +89,25 @@ final ThemeData darkTheme = ThemeData(
   iconTheme: const IconThemeData(
     color: darkTertiary,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-    labelStyle: TextStyle(color: darkNeutralGrey),
-  ),
+  inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide.none,
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: const BorderSide(
+          color: darkPrimary,
+          width: 1,
+        ),
+      ),
+      filled: true,
+      fillColor: darkNeutralGrey.withOpacity(0.2),
+      hintStyle: const TextStyle(color: darkNeutralGrey),
+      suffixIconColor: Color(
+        darkNeutralGrey.value,
+      )),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: darkPrimary,
     foregroundColor: darkBackground,
@@ -99,7 +125,7 @@ final ThemeData darkTheme = ThemeData(
 );
 
 // Warna tema terang
-const Color lightPrimary = Color(0xFF00A86B);
+const Color lightPrimary = Color(0xFF006BFF);
 const Color lightSecondary = Color(0xFF003566);
 const Color lightTertiary = Color(0xFF00A86B);
 const Color lightNeutralBlack = Color(0xFF000814);
@@ -117,7 +143,7 @@ final ThemeData lightTheme = ThemeData(
     surface: lightSurface,
     error: Colors.red,
     onPrimary: lightNeutralBlack,
-    onSecondary: Colors.white,
+    onSecondary: lightNeutralGrey,
     onSurface: lightNeutralSlateGrey,
     onError: Colors.white,
     brightness: Brightness.light,
@@ -149,19 +175,29 @@ final ThemeData lightTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
+      textStyle: GoogleFonts.poppins(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15,
+      ),
       foregroundColor: Colors.white,
       backgroundColor: lightPrimary,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(50),
       ),
-      minimumSize: const Size(88, 36),
+      minimumSize: const Size.fromHeight(50),
       padding: const EdgeInsets.symmetric(horizontal: 16),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(
+      textStyle: GoogleFonts.poppins(
+        fontSize: 15,
+        fontWeight: FontWeight.w500,
+        letterSpacing: 0.15,
+      ),
       foregroundColor: lightPrimary,
-      minimumSize: const Size(88, 36),
+      minimumSize: const Size.fromHeight(50),
       padding: const EdgeInsets.symmetric(horizontal: 16),
     ),
   ),
@@ -176,8 +212,36 @@ final ThemeData lightTheme = ThemeData(
   iconTheme: const IconThemeData(
     color: lightTertiary,
   ),
-  inputDecorationTheme: const InputDecorationTheme(
-    labelStyle: TextStyle(color: lightNeutralGrey),
+  inputDecorationTheme: InputDecorationTheme(
+    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide.none,
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: const BorderSide(
+        color: lightPrimary,
+        width: 1,
+      ),
+    ),
+    filled: true,
+    fillColor: lightNeutralGrey.withOpacity(0.2),
+    hintStyle: const TextStyle(color: lightNeutralGrey),
+    suffixIconColor: Color(
+      lightNeutralGrey.value,
+    ),
+    helperStyle: GoogleFonts.poppins(
+      fontSize: 13,
+      fontWeight: FontWeight.w400,
+      color: lightNeutralGrey,
+    ),
+    helperMaxLines: 2,
+  ),
+  textSelectionTheme: const TextSelectionThemeData(
+    cursorColor: lightPrimary,
+    selectionColor: lightPrimary,
+    selectionHandleColor: lightPrimary,
   ),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: lightPrimary,
