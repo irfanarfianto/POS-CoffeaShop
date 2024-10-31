@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pos_coffeashop/features/account/presentation/pages/account_profile_page.dart';
 import 'package:pos_coffeashop/router/home/widget/list_menu.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -37,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           HomeSection(),
           InventarisSection(),
           NotificationSection(),
-          ProfileSection(),
+          AccountProfilePage(),
         ],
       ),
       bottomNavigationBar: StylishBottomBar(
@@ -80,6 +79,13 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 12.0,
                 )),
+            badge: const Text('9+',
+                style: TextStyle(
+                  fontSize: 10.0,
+                )),
+            showBadge: true,
+            badgeColor: Colors.red,
+            badgePadding: const EdgeInsets.symmetric(horizontal: 5.0),
             selectedColor: Theme.of(context).colorScheme.primary,
           ),
           BottomBarItem(
@@ -183,18 +189,5 @@ class NotificationSection extends StatelessWidget {
           title: const Text('Notifikasi'),
         ),
         body: const Center(child: Text('Notifikasi Page')));
-  }
-}
-
-class ProfileSection extends StatelessWidget {
-  const ProfileSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text('Profil'),
-        ),
-        body: const Center(child: Text('Profil Page')));
   }
 }
