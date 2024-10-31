@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       bottomNavigationBar: StylishBottomBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         option: AnimatedBarOptions(
           opacity: 0.3,
           barAnimation: BarAnimation.fade,
@@ -53,10 +54,13 @@ class _HomePageState extends State<HomePage> {
             icon: selected == 0
                 ? const Icon(EvaIcons.home)
                 : const Icon(EvaIcons.home_outline),
-            title: const Text('Beranda',
-                style: TextStyle(
-                  fontSize: 12.0,
-                )),
+            title: const Text(
+              'Beranda',
+              style: TextStyle(
+                fontSize: 12.0,
+              ),
+            ),
+            selectedColor: Theme.of(context).colorScheme.primary,
           ),
           BottomBarItem(
             icon: selected == 1
@@ -66,6 +70,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 12.0,
                 )),
+            selectedColor: Theme.of(context).colorScheme.primary,
           ),
           BottomBarItem(
             icon: selected == 2
@@ -75,6 +80,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 12.0,
                 )),
+            selectedColor: Theme.of(context).colorScheme.primary,
           ),
           BottomBarItem(
             icon: selected == 3
@@ -84,6 +90,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(
                   fontSize: 12.0,
                 )),
+            selectedColor: Theme.of(context).colorScheme.primary,
           ),
         ],
         hasNotch: true,
@@ -98,7 +105,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.push('/cart');
+          context.push('/pesanan');
         },
         backgroundColor: Theme.of(context).colorScheme.primary,
         shape: RoundedRectangleBorder(
@@ -145,7 +152,11 @@ class PemesananSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Pemesanan Page'));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Pesanan'),
+        ),
+        body: const Center(child: Text('Pemesanan Page')));
   }
 }
 
@@ -154,7 +165,11 @@ class InventarisSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Inventaris Page'));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Inventory'),
+        ),
+        body: const Center(child: Text('Inventaris Page')));
   }
 }
 
@@ -163,7 +178,11 @@ class NotificationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Notifikasi Page'));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Notifikasi'),
+        ),
+        body: const Center(child: Text('Notifikasi Page')));
   }
 }
 
@@ -172,6 +191,10 @@ class ProfileSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Profil Page'));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text('Profil'),
+        ),
+        body: const Center(child: Text('Profil Page')));
   }
 }
